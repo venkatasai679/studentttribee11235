@@ -25,7 +25,7 @@ SECRET_KEY = 'ev#wd7#h(191eiynf628or)(g-xnf**0gdc0^*^5v93y*b5%q_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -122,5 +122,6 @@ STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = 'dashboard'
 LOGOUT_REDIRECT_URL = 'login'
 LOGIN_URL = '/login/'
+
 
 
