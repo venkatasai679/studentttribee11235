@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <script>
+        function updatePriority(value) {
+            document.getElementById('priority-value').innerText = value;
+            fetch("{% url 'update_priority' %}", {
+                method: "POST",
+                headers: {
+                    "X-CSRFToken": "{{ csrf_token }}",
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: "priority=" + value
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('matches-count').innerText = data.matches;
+            });
+        }
+    </script>
+</head>
+<body>
+<h2>Welcome, {{ user.username }}</h2>
+
+<p>Set your priority: <span id="priority-value">{{ form.instance.priority }}</span></p>
+<input type="range" min="0" max="100" value="{{ form.instance.priority }}" 
+       onchange="updatePriority(this.value)">
+
+<p>Number of friends you can connect with: <span id="matches-count">{{ matches_count }}</span></p>
+
+<a href="{% url 'logout' %}">Logout</a>
+</body>
+</html>
